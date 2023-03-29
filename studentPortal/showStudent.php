@@ -1,8 +1,11 @@
 <?php
-include('./config/constants.php');
+include('./partials/config/constants.php');
 $id=$_GET['id'];
 
 $sql="Select * from tblstudent where studentID='$id'";
+
+
+
 
 $res=mysqli_query($conn,$sql);
 
@@ -28,6 +31,19 @@ while($row=mysqli_fetch_assoc($res))
         $pic=$picrow['imgName'];
     }
 
+    $psql="select * from tblparent where studentID='$id'";
+    $pres=mysqli_query($conn,$psql);
+    if($prow=mysqli_fetch_assoc($pres))
+    {
+        $parentName=$prow["Fname"]." ".$prow["Mname"]." ".$prow["Lname"];
+        $parentContact=$prow["email"]." "." ".$prow["phone"];
+    }
+    $feesql="select * from fees where studentID='$id'";
+    $feeres=mysqli_query($conn,$feesql);
+    if($feerow=mysqli_fetch_assoc($feeres))
+    {
+        $feeBalance=$feerow['balance'];
+    }
 
 
 
@@ -63,16 +79,16 @@ while($row=mysqli_fetch_assoc($res))
         </ul>
         <h3>Parent Information</h3>
         <ul>
-            <li><strong>Name:</strong> Yvonne Oyugi</li>
-            <li><strong>Contact:</strong> 555-555-5555</li>
+            <li><strong>Name:</strong><?php echo $parentName?></li>
+            <li><strong>Contact:</strong><?php echo $parentContact?></li>
         </ul>
         <h3>Room Information</h3>
         <ul>
             <li><strong>Room Type:</strong> Single Room - Large</li>
             <li><strong>Campus:</strong><?php echo $schoolName?></li>
             <li><strong>Registration Number:</strong><?php echo $schoolID?></li>
-            <li><strong>Photo:</strong> <img src="../admin/images/student/<?php echo $pic?>" alt="Profile Photo"></li>
-<!--            <li><strong>Deposit:</strong> sh.10,000</li>-->
+            <li><strong>Photo:</strong> <img style="width: 100px;" src="../admin/images/student/<?php echo $pic?>" alt="Profile Photo"></li>
+            <li><strong>Fee Balance:</strong> Ksh.<?php echo $feeBalance ?></li>
         </ul>
     </section>
 </main>

@@ -44,6 +44,7 @@
                     <li><a href="index.php">Home</a></li>
                     <li><a href="../Admin/">Admin</a></li>
                     <li><a href="../Student/">Students</a></li>
+                    <li><a href="../Student/fees">Fees</a></li>
                     <li><a href="../Worker/">Workers</a></li>
                     <li><a href="../Rooms/">Rooms</a></li>
                     <li><a href="../logout.php">Logout</a></li>

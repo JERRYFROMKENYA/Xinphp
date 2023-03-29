@@ -151,3 +151,28 @@ table tr td select
     margin: 10% auto;
     padding: 2%;
 }
+.student-details h3 {
+    margin-top: 20px;
+}
+
+.student-details ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.student-details ul li {
+    margin-bottom: 10px;
+}
+
+.student-details ul li strong {
+    display: inline-block;
+    width: 150px;
+}
+
+.student-details ul li img {
+    max-width: 200px;
+    max-height: 200px;
+    border: 1px solid #ccc;
+    padding: 5px;
+}

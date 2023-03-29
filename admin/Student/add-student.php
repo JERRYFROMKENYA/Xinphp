@@ -37,7 +37,18 @@
                         <input type="text" name="Lname" placeholder="Last Name">
                     </td>
                 </tr>
-
+                <tr>
+                    <td>Parents Info: </td>
+                    <td>
+                        <input type="text" name="PFname" placeholder="First Name">
+                        <input type="text" name="PMname" placeholder="Middle Name">
+                        <input type="text" name="PLname" placeholder="Last Name">
+                    </td>
+                    <td>
+                        <input type="email" name="Pemail" placeholder="Parent's email">
+                        <input type="number" name="Pphone" placeholder="Parent's Phone Number">
+                    </td>
+                </tr>
 
                 <tr>
                     <td>Select Passport Photo: </td>
@@ -218,14 +229,38 @@
                     $imgRes=mysqli_query($conn, $imgSQL);
                     if($imgRes==true)
                     {
-                        //Query Executed and Student Added
-                        $_SESSION['add'] = "<div class='success'>Student Added Successfully.</div>";
-                        //Redirect to Manage Student Page
-                        header('location:'.SITEURL.'admin/Student');
+                        $pFname=$_POST['PFname'];
+                        $pMname=$_POST['PMname'];
+                        $pLname=$_POST['PLname'];
+                        $pemail=$_POST['Pemail'];
+                        $pPhone=$_POST['Pphone'];
+                        $psql="INSERT INTO tblparent SET Fname='$pFname',Mname='$pMname',Lname='$pLname',email='$pemail',phone='$pPhone',studentID='$stdID'";
+                        $pres=mysqli_connect($conn,$psql);
+                        if($pres==true)
+                        {
+                            //Query Executed and Student Added
+                            $_SESSION['add'] = "<div class='success'>Student Added Successfully.</div>";
+                            //Redirect to Manage Student Page
+                            header('location:'.SITEURL.'admin/Student');
+
+                        }
+                        else
+                        {
+                            $_SESSION['add'] = "<div class='error'>Failed to add Parent info!</div>";
+
+                        }
+
                     }
                     else{
                         $_SESSION['add'] = "<div class='error'>No Image Provided</div>";
                     }
+                    $pFname=$_POST['PFname'];
+                    $pMname=$_POST['PMname'];
+                    $pLname=$_POST['PLname'];
+                    $pemail=$_POST['Pemail'];
+                    $pPhone=$_POST['Pphone'];
+                    $psql="INSERT INTO tblparent SET Fname='$pFname',Mname='$pMname',Lname='$pLname',email='$pemail',phone='$pPhone',studentID='$stdID'";
+
                     }
 
 
